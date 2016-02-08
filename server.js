@@ -21,7 +21,10 @@ graphQLServer.listen(GRAPHQL_PORT, () => console.log(
 
 // Serve the Relay app
 var compiler = webpack({
-  entry: path.resolve(__dirname, 'js', 'app.js'),
+  entry: [
+    'webpack-hot-middleware/client',
+    path.resolve(__dirname, 'js', 'app.js')
+  ],
   module: {
     loaders: [
       {
@@ -34,7 +37,11 @@ var compiler = webpack({
       }
     ]
   },
-  output: {filename: 'app.js', path: '/'}
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+  ],
+  output: {filename: 'app.js', path: '/', publicPath: '/js/'}
 });
 var app = new WebpackDevServer(compiler, {
   contentBase: '/public/',
@@ -42,6 +49,7 @@ var app = new WebpackDevServer(compiler, {
   publicPath: '/js/',
   stats: {colors: true}
 });
+app.use(require('webpack-hot-middleware')(compiler));
 // Serve static resources
 app.use('/', express.static(path.resolve(__dirname, 'public')));
 app.listen(APP_PORT, () => {
