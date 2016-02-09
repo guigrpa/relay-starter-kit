@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 
-import App from './components/App';
+import App from './components/App.cjsx';
 import AppHomeRoute from './routes/AppHomeRoute';
 import React from 'react';
 import ReactDOM from 'react-dom';

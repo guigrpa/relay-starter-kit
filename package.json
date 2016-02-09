@@ -30,6 +30,9 @@
   "devDependencies": {
     "babel-cli": "^6.3.17",
     "babel-preset-react-hmre": "^1.1.0",
+    "cjsx-loader": "^2.1.0",
+    "coffee-loader": "^0.7.2",
+    "coffee-script": "^1.10.0",
     "webpack-hot-middleware": "^2.6.4"
   }
 }

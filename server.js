@@ -34,6 +34,9 @@ var compiler = webpack({
           plugins: ['./build/babelRelayPlugin'],
         },
         test: /\.js$/,
+      }, {
+        test: /\.cjsx$/,
+        loader: 'babel!coffee!cjsx',
       }
     ]
   },
